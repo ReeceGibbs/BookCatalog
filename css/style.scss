@@ -1,0 +1,14 @@
+//below we import our bootstrap scss files
+@import "../bootstrap/scss/bootstrap";
+@import "../bootstrap/scss/transitions";
+
+//for every italisized element in a list group item we increase the margin on the left and right for readability
+.list-group-item {
+    i{
+        margin: 0px 15px;
+    }
+    //we float our list item options right so that they look better
+    div.options {
+        float: right;
+    }
+}

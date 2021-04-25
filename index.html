@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- metadata -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Book Catalog</title>
+    <!-- import our stylesheet -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body onload="loadBooks()">
+    <!-- the heading for our page -->
+    <div class="container">
+        <h1>Book Catalog</h1>
+    </div>
+    <br>
+    <!-- our form so that users can add book information to the book list -->
+    <!-- we put our form in a collapsible region so that it doesn't take up too much space -->
+    <div class="container">
+        <!-- here define our collapsible form div region -->
+        <div class="accordion" id="collapseForm">
+            <!-- our collapsible form is essentially a collapsible card as far as bootstrap 4.6 is concerned -->
+            <div class="card">
+                <!-- we give our collapsible form a heading so users know where they can add new books to their catalog -->
+                <div class="card-header" id="heading">
+                    <h2 class="mb-0">
+                        <!-- we define all of our heading attributes -->
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                            data-target="#collapseFormContent" aria-expanded="true" aria-controls="collapseFormContent">
+                            Add New Book
+                        </button>
+                    </h2>
+                </div>
+                <!-- here we actually define the content of our collapsible region. Which in this case will be our form to add a new book to our catalog -->
+                <div id="collapseFormContent" class="collapse" aria-labelledby="heading" data-parent="#collapseForm">
+                    <!-- within our card body we have a div container that contains our form info -->
+                    <div class="card-body">
+                        <!-- below we define our form
+                        we name our form to make it easier to reference and we validate our fields upon submitting the form so that we don't accept rubbish book objects -->
+                        <form name="bookForm" onsubmit="return(validate(this.getAttribute('editBookId')))"> <!--we call our form validation function with the editBookId so we know if we are editing a book or creating a new one-->
+                            <!-- our first form row holds the input fields the user can fill for title and author -->
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="bookTitle">Title</label>
+                                    <input type="text" class="form-control" id="bookTitle" placeholder="Title">
+                                </div>
+                                <div class="col">
+                                    <label for="bookAuthor">Author</label>
+                                    <input type="text" class="form-control" id="bookAuthor" placeholder="Author">
+                                </div>
+                            </div>
+                            <br>
+                            <!-- in the second row we have the remaining two fields the user can fill out -->
+                            <div class="form-row">
+                                <div class="col">
+                                    <!-- this is a dropdown select list from which the user can select the book's genre -->
+                                    <label for="genreSelect">Genre</label>
+                                    <select class="form-control" id="genreSelect">
+                                        <option selected disabled>Select a genre...</option>
+                                        <option>Romance</option>
+                                        <option>Comedy</option>
+                                        <option>Drama</option>
+                                        <option>Mystery</option>
+                                        <option>Fantasy</option>
+                                        <option>Science Fiction</option>
+                                        <option>Thriller</option>
+                                        <option>Horror</option>
+                                        <option>Children</option>
+                                        <option>(Auto)Biography</option>
+                                        <option>Inspirational/Self-Help</option>
+                                    </select>
+                                </div>
+                                <!-- in the second column the user can give the book a rating out of 5 by using the slider we provide -->
+                                <div class="col">
+                                    <label for="reviewRange">Rating (0-5)</label>
+                                    <input type="range" class="custom-range" min="0" max="5" id="reviewRange">
+                                </div>
+                            </div>
+                            <br>
+                            <!-- after filling out the form the user can submit the book info -->
+                            <button type="submit" class="btn btn-primary my-1" id="saveBook">Save Book</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- new container div for our list of books -->
+    <div class="container">
+        <h3>Books</h3>
+        <!-- our empty unordered list of books -->
+        <ul class="list-group" id="bookList"></ul>
+    </div>
+    <!-- here we reference our user-defined javascript file that will handle our pages events -->
+    <script src="./scripts/bookCatalog.js"></script>
+    <!-- below we reference our validation js file -->
+    <script src="./scripts/formValidation.js"></script>
+    <!-- below we reference jquery and bootstrap 4.6 javascript bundles so that we can use our collapsible region -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+    <script src="./bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+</body>
+
+</html>
